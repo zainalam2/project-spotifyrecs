@@ -5,3 +5,20 @@ body {
 h1 {
     text-align: center;
 }
+
+
+/* create class for tooltip attributes*/
+.tooltip {
+    position: absolute;
+    background-color: white;
+    border:  solid;
+    border-width: 2px;
+    border-radius: 5px;
+    padding: 5px;
+  }
+  
+  .color-key {
+    transform: rotate(180deg);
+    height: 10px;
+    width: 60%;
+  }
