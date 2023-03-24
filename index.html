@@ -37,9 +37,9 @@
             The original dataset contained 46 columns and over 10,000 rows. For the purposes of this assignment, a random subset of 2,000 rows was selected using a python script. 
             In terms of biases and ethical considerations, one facet is the columns that were collected. Since our study is reliant on a query written by another party, there may have been a bias in the song selection process that is unknown to our team or a bias in writing this query. 
             For example, popularity is an attribute that can only be gauged through the information present at a specific moment in time. Popularity is likely pulled based on the number of streams in that moment, and external factors that may cause a song to be streamed frequently at a time are not clear. 
-            Additionally, a consideration might be the bias present in Spotify's assignment of characteristics like valence (the “mood” of a song), which is more subjective and difficult to quantify. Ethical considerations might include the manner in which Spotify is gathering/storing data from users and artists.
+            Additionally, a consideration might be the bias present in Spotify's assignment of characteristics like valence (the "mood" of a song), which is more subjective and difficult to quantify. Ethical considerations might include the manner in which Spotify is gathering/storing data from users and artists.
             To clean the data, we first removed all columns that were not relevant to our analysis. For example, there was a lot of API data that were added as columns so these were deleted (i.e. album.external_urls.spotify, external_ids.isrc, external_urls.spotify). Additionally, columns that had data that was not unique, unuseful or repetitive for differentiating tracks were removed (i.e. time signature, track number, disc number). 
-            Next, we changed the 'key' column to include the actual key string (derived from the data dictionary in Spotify’s API documentation) rather than the key id. Then, we replaced the album release date column data to just include the release year as some rows only included the year rather than the full date. Finally, we removed rows that contained missing values and renamed the column headers to be more readable.
+            Next, we changed the 'key' column to include the actual key string (derived from the data dictionary in Spotify's API documentation) rather than the key id. Then, we replaced the album release date column data to just include the release year as some rows only included the year rather than the full date. Finally, we removed rows that contained missing values and renamed the column headers to be more readable.
             At this stage, changes that we have made since our initial proposal sketch include: using a two axes grid rather than a four-quadrant grid for our scatterplot, our channel of color will now depict how long ago a song was released instead of encoding the same attribute twice (position and color for grouping), and our loudness attribute was converted to a positive scale instead of a negative scale for standardization purposes.
             </p>
         </div>
@@ -47,11 +47,18 @@
 
     <div>
         <h2>Visualization</h2>
-        TODO: Build your visualization tool here
-        <!-- <h4>Spotify Song Attributes</h4> -->
-        <div class="scatter"></div>
-        <div></div>
-        <img src="Greens.png" alt="color_bar" class="color-key"><p>Min Album Release Date (1945) to  Min Album Release Date (2020)</p>
+        
+        
+        <div class="scatter">
+            <h4 id="vis1-title">Spotify Song Attributes</h4>
+            <div id="legend">
+                <p id="color-key-min">Min Album Release Date (1945)</p>
+                <img src="Greens.png" alt="color_bar" id="color-key"><p></p>
+                <p id="color-key-max">Min Album Release Date (2020)</p>
+            </div>
+        </div>
+        
+        
         
         <p id = "click-point"></p>
 
@@ -61,35 +68,35 @@
             <form id ='show-pt'>
 
               <label>Select X Axes:</label>
-              <input list = "x" id="x-coord">
-              <datalist id="x">
-                <option value="Energy">
-                <option value="Danceability">
-                <option value="Instrumentalness">
-                <option value="Liveness">
-                <option value="Loudness">
-                <option value="Tempo">
-                <option value="Valence">
-              </datalist>
+              
+              <select form="show-pt" id="x">
+                <option value="Energy">Energy</option>
+                <option value="Danceability" selected>Danceability</option>
+                <option value="Instrumentalness">Instrumentalness</option>
+                <option value="Liveness">Liveness</option>
+                <option value="Loudness">Loudness</option>
+                <option value="Tempo">Tempo</option>
+                <option value="Valence">Valence</option>
+              </select>
 
               <br>
 
               <label>Select Y Axes:</label>
-              <input list = "y" id = "y-coord">
-              <datalist id="y">
-                <option value="Energy">
-                <option value="Danceability">
-                <option value="Instrumentalness">
-                <option value="Liveness">
-                <option value="Loudness">
-                <option value="Tempo">
-                <option value="Valence">
-              </datalist>
+              
+              <select form="show-pt" id="y">
+                <option value="Energy">Energy</option>
+                <option value="Danceability">Danceability</option>
+                <option value="Instrumentalness">Instrumentalness</option>
+                <option value="Liveness">Liveness</option>
+                <option value="Loudness" selected>Loudness</option>
+                <option value="Tempo">Tempo</option>
+                <option value="Valence">Valence</option>
+              </select>
         
             </form>
 
             <!--create button-->
-            <button type="button" onClick = "addPoint()" id="create-pt">Create</button>
+            <button type="button" onClick = "changeAttributes()" id="create-pt">Create</button>
     </div>
         <br> 
         <div class="bar"></div>

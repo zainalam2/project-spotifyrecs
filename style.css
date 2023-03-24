@@ -6,10 +6,18 @@ h1 {
     text-align: center;
 }
 
+#vis1-title {
+    text-align: center
+    
+}
 
+#color-key-min,
+#color-key-max  {
+  font-size: 10px;
+}
 /* create class for tooltip attributes*/
-.tooltip {
-    position: absolute;
+#tooltip {
+    /* position: absolute; */
     background-color: white;
     border:  solid;
     border-width: 2px;
@@ -17,8 +25,23 @@ h1 {
     padding: 5px;
   }
   
-  .color-key {
+
+
+  .scatter {
+    position: relative;
+    max-width: 50%;
+  }
+#legend {
+  position: absolute;
+  display: flex;
+  
+
+}
+  #color-key {
+    /* position: absolute; */
     transform: rotate(180deg);
     height: 10px;
     width: 60%;
-  }
+    /* top: 75px; */
+    /* left: 30%;  */
+  } 
