@@ -24,7 +24,7 @@ let BAR_WIDTH = FRAME_WIDTH - MARGINS.left - MARGINS.right;
 
 
 function render(x_attribute, y_attribute) {
-    document.getElementById("scatter").innerHTML = ""
+    document.getElementById("scatter").innerHTML = "";
     
 
     // Reading from file and appending points
@@ -312,7 +312,7 @@ function changeAttributes() {
     
     let x_attribute = x_value.toLowerCase();
     let y_attribute = y_value.toLowerCase();
-    document.getElementById("tooltip").remove()
+    document.getElementById("tooltip").remove();
     render(x_attribute, y_attribute);
 
 }
