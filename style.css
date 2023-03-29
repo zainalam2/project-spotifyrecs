@@ -24,8 +24,6 @@ h1 {
     border-radius: 5px;
     padding: 5px;
   }
-  
-
 
   .scatter {
     position: relative;
@@ -48,7 +46,11 @@ h1 {
     /* left: 30%;  */
   } 
 
-rect.active {
+.inactive {
+    fill: forestgreen;
+}
+
+.active {
   fill: red;
 }
 

@@ -261,10 +261,10 @@ function render(x_attribute, y_attribute) {
                     .attr("width", 20)
                     .attr("height", BAR_HEIGHT - Y_SCALE_BAR(COUNTER.range()[i])) 
                     .attr("id", COUNTER.domain()[i])
-                    .style("fill", "forestgreen");
+                    .attr("class", "inactive");
         }
 
-                // adding a tooltip
+        // adding a tooltip
         const TOOLTIP = d3.select(".scatter")
                             .append("div")
                             .attr("id", "tooltip")
@@ -284,51 +284,79 @@ function render(x_attribute, y_attribute) {
         TOOLTIP.html("Track Name: " + d.track_name + "<br>Album: " + d.album_name + "<br>Release Year: " + d.album_release_year)
                 .style("left", (event.pageX + 10) + "px") 
                 .style("top", (event.pageY - 50) + "px"); 
-        /*
+        
 
-        if(d.US == 1) {
-            let usBar = document.getElementById("US");
-            usBar.classList.add('active');
-
-        } 
-        if(d.CA == 1) {
-
-        }
-        if(d.MX == 1) {
-
-        }
-        if(d.CR == 1) {
-
-        }
-        if(d.AR == 1) {
-
-        }
-        if(d.BO == 1) {
-
-        }
-        if(d.CL == 1) {
-
-        }
-        if(d.PE == 1) {
-
-        }
-        if(d.BR == 1) {
-
-        }
-        if(d.PY == 1) {
-            let pyBar = document.getElementById("PY");
-            pyBar.classList.add("bars");
-            //console.log(pyBar);
-        }
-        */
-
+            if(d.US == 1) {
+                d3.selectAll('#US').attr("class", "active")
+            } 
+            if(d.CA == 1) {
+                d3.selectAll('#CA').attr("class", "active")
+            }
+            if(d.MX == 1) {
+                d3.selectAll('#MX').attr("class", "active")
+            }
+            if(d.CR == 1) {
+                d3.selectAll('#CR').attr("class", "active")
+            }
+            if(d.AR == 1) {
+                d3.selectAll('#AR').attr("class", "active")
+            }
+            if(d.BO == 1) {
+                d3.selectAll('#BO').attr("class", "active")
+            }
+            if(d.CL == 1) {
+                d3.selectAll('#CL').attr("class", "active")
+            }
+            if(d.PE == 1) {
+                d3.selectAll('#PE').attr("class", "active")
+            }
+            if(d.BR == 1) {
+                d3.selectAll('#BR').attr("class", "active")
+            }
+            if(d.PY == 1) {
+                d3.selectAll('#PY').attr("class", "active")
+            }
+        
         };
 
 
         function handleMouseleave(event, d) {
             d3.select(this)
         TOOLTIP.style("opacity", 0); 
+
+
+            if(d.US == 1) {
+                d3.selectAll('#US').attr("class", "inactive")
+            } 
+            if(d.CA == 1) {
+                d3.selectAll('#CA').attr("class", "inactive")
+            }
+            if(d.MX == 1) {
+                d3.selectAll('#MX').attr("class", "inactive")
+            }
+            if(d.CR == 1) {
+                d3.selectAll('#CR').attr("class", "inactive")
+            }
+            if(d.AR == 1) {
+                d3.selectAll('#AR').attr("class", "inactive")
+            }
+            if(d.BO == 1) {
+                d3.selectAll('#BO').attr("class", "inactive")
+            }
+            if(d.CL == 1) {
+                d3.selectAll('#CL').attr("class", "inactive")
+            }
+            if(d.PE == 1) {
+                d3.selectAll('#PE').attr("class", "inactive")
+            }
+            if(d.BR == 1) {
+                d3.selectAll('#BR').attr("class", "inactive")
+            }
+            if(d.PY == 1) {
+                d3.selectAll('#PY').attr("class", "inactive")
+            }
         };
+        
 
         // Add event listeners
         SCATTER_FRAME.selectAll("circle")
