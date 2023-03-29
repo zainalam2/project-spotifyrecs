@@ -37,6 +37,8 @@ h1 {
   
 
 }
+
+
   #color-key {
     /* position: absolute; */
     transform: rotate(180deg);
@@ -45,3 +47,9 @@ h1 {
     /* top: 75px; */
     /* left: 30%;  */
   } 
+
+rect.active {
+  fill: red;
+}
+
+

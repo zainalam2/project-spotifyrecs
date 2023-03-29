@@ -28,7 +28,7 @@ function render(x_attribute, y_attribute) {
     
 
     // Reading from file and appending points
-    d3.csv("data/Spotify_Songs_Subset.csv").then((data) => {
+    d3.csv("data/Spotify_Songs_Subset2.csv").then((data) => {
         // Create key dictionary (it is possible we will use this later) 
         let keys = {'A' : 'blue', 'A#/Bb' : 'mediumturquiose', 
         'B' : 'green', 'C' : 'orange', 'C#/Db' : 'coral', 
@@ -195,53 +195,15 @@ function render(x_attribute, y_attribute) {
 
         //     };
 
-        //   // when selecting a point to be brushed
-        //   function isSelected(coords, cx, cy) {
-        //     let x0 = coords[0][0],
-        //         x1 = coords[1][0],
-        //         y0 = coords[0][1],
-        //         y1 = coords[1][1];
-        //     return x0 <= cx && cx <= x1 && y0 <= cy && cy <= y1;
-        //   };
+           // when selecting a point to be brushed
+           function isSelected(coords, cx, cy) {
+             let x0 = coords[0][0],
+                 x1 = coords[1][0],
+                 y0 = coords[0][1],
+                 y1 = coords[1][1];
+             return x0 <= cx && cx <= x1 && y0 <= cy && cy <= y1;
+           };
 
-        // adding a tooltip
-        const TOOLTIP = d3.select(".scatter")
-                            .append("div")
-                            .attr("id", "tooltip")
-                            .style("opacity", 0); 
-
-
-        function handleMouseover(event, d) {
-        // change color of bar when mouse is over it
-            d3.select(this)
-        TOOLTIP.style("opacity", 1);
-
-
-        };
-
-    function handleMousemove(event, d) {
-
-        // position the tooltip and fill in information 
-        TOOLTIP.html("Track Name: " + d.track_name + "<br>Album: " + d.album_name + "<br>Release Year: " + d.album_release_year)
-                .style("left", (event.pageX + 10) + "px") 
-                .style("top", (event.pageY - 50) + "px"); 
-        
-        };
-
-
-        function handleMouseleave(event, d) {
-            d3.select(this)
-        TOOLTIP.style("opacity", 0); 
-        };
-
-        // Add event listeners
-        SCATTER_FRAME.selectAll("circle")
-            .on("mouseover", handleMouseover) 
-            .on("mousemove", handleMousemove)
-            .on("mouseleave", handleMouseleave);
-            
-
-        
         
         // plot bar 
         const X_SCALE_BAR = d3.scaleBand()
@@ -287,6 +249,8 @@ function render(x_attribute, y_attribute) {
             .domain(['US', 'CA', 'MX', 'CR', 'AR', 'BO', 'CL', 'PE', 'BR', 'PY'])
             .range([2000, 1949, 1920, 1879, 1874, 1873, 1873, 1873, 1873, 1873]);
 
+
+        
         for (var i = 0; i < 10; i++) {
             BAR_FRAME.selectAll("bars")
                     .data(data)
@@ -296,8 +260,81 @@ function render(x_attribute, y_attribute) {
                     .attr("y", Y_SCALE_BAR(COUNTER.range()[i]) + MARGINS.top) 
                     .attr("width", 20)
                     .attr("height", BAR_HEIGHT - Y_SCALE_BAR(COUNTER.range()[i])) 
-                    .attr("class", "bar");
+                    .attr("id", COUNTER.domain()[i])
+                    .style("fill", "forestgreen");
         }
+
+                // adding a tooltip
+        const TOOLTIP = d3.select(".scatter")
+                            .append("div")
+                            .attr("id", "tooltip")
+                            .style("opacity", 0); 
+
+
+        function handleMouseover(event, d) {
+            d3.select(this)
+        TOOLTIP.style("opacity", 1);
+
+
+        };
+
+        function handleMousemove(event, d) {
+
+        // position the tooltip and fill in information 
+        TOOLTIP.html("Track Name: " + d.track_name + "<br>Album: " + d.album_name + "<br>Release Year: " + d.album_release_year)
+                .style("left", (event.pageX + 10) + "px") 
+                .style("top", (event.pageY - 50) + "px"); 
+        /*
+
+        if(d.US == 1) {
+            let usBar = document.getElementById("US");
+            usBar.classList.add('active');
+
+        } 
+        if(d.CA == 1) {
+
+        }
+        if(d.MX == 1) {
+
+        }
+        if(d.CR == 1) {
+
+        }
+        if(d.AR == 1) {
+
+        }
+        if(d.BO == 1) {
+
+        }
+        if(d.CL == 1) {
+
+        }
+        if(d.PE == 1) {
+
+        }
+        if(d.BR == 1) {
+
+        }
+        if(d.PY == 1) {
+            let pyBar = document.getElementById("PY");
+            pyBar.classList.add("bars");
+            //console.log(pyBar);
+        }
+        */
+
+        };
+
+
+        function handleMouseleave(event, d) {
+            d3.select(this)
+        TOOLTIP.style("opacity", 0); 
+        };
+
+        // Add event listeners
+        SCATTER_FRAME.selectAll("circle")
+            .on("mouseover", handleMouseover) 
+            .on("mousemove", handleMousemove)
+            .on("mouseleave", handleMouseleave);
         
     });
 }
